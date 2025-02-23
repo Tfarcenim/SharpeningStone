@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/grindstone",
+  "textures": {
+    "round": "sharpeningstone:block/sharpening_stone_round",
+    "side": "sharpeningstone:block/sharpening_stone_side"
+  }
+}
