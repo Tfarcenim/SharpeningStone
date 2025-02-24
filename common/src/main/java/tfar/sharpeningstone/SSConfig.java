@@ -4,6 +4,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,7 +23,7 @@ public class SSConfig {
         CONFIG = specPair.getLeft();
     }
 
-    public final ConfigHelper.ConfigObject<Map<TagKey<Item>, Enchantment>> map;
+    public final ConfigHelper.ConfigObject<Map<TagKey<Item>, EnchantmentInstance>> map;
     public final ForgeConfigSpec.DoubleValue damage;
 
     public SSConfig(ForgeConfigSpec.Builder builder)  {
@@ -32,10 +33,10 @@ public class SSConfig {
         builder.pop();
     }
 
-    static Map<TagKey<Item>,Enchantment> defaults() {
-        Map<TagKey<Item>,Enchantment> map =  new HashMap<>();
-        map.put(ItemTags.SWORDS, Enchantments.SHARPNESS);
-        map.put(ModTags.DIGGERS,Enchantments.BLOCK_EFFICIENCY);
+    static Map<TagKey<Item>,EnchantmentInstance> defaults() {
+        Map<TagKey<Item>,EnchantmentInstance> map =  new HashMap<>();
+        map.put(ItemTags.SWORDS,new EnchantmentInstance(Enchantments.SHARPNESS,3));
+        map.put(ModTags.DIGGERS,new EnchantmentInstance(Enchantments.BLOCK_EFFICIENCY,3));
         return map;
     }
 

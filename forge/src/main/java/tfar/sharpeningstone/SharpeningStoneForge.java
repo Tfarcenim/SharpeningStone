@@ -1,6 +1,9 @@
 package tfar.sharpeningstone;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -17,12 +20,22 @@ public class SharpeningStoneForge {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::register);
         bus.addListener(ModDatagen::start);
+        bus.addListener(this::tabs);
         // This method is invoked by the Forge mod loader when it is ready
         // to load your mod. You can access Forge and Common code in this
         // project.
     
         // Use Forge to bootstrap the Common mod.
         SharpeningStone.init();
+    }
+
+    void tabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(Init.SHARPENING_STONE);
+            event.accept(Init.REPAIR_BENCH);
+            event.accept(Init.REPAIR_KIT);
+            event.accept(Init.PORTABLE_GRINDSTONE);
+        }
     }
 
     void register(RegisterEvent event) {

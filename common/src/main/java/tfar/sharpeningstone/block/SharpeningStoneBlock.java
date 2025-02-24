@@ -1,6 +1,7 @@
 package tfar.sharpeningstone.block;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.GrindstoneBlock;
 import net.minecraft.world.level.block.LevelEvent;
@@ -26,7 +28,14 @@ import java.util.Map;
 
 public class SharpeningStoneBlock extends GrindstoneBlock {
 
-    public static final Codec<Map<TagKey<Item>,Enchantment>> CODEC = Codec.unboundedMap(TagKey.codec(Registries.ITEM), BuiltInRegistries.ENCHANTMENT.byNameCodec());
+    public static final Codec<EnchantmentInstance> ENCHANTMENT_INSTANCE_CODEC = RecordCodecBuilder.create(instance ->
+            instance.group(BuiltInRegistries.ENCHANTMENT.byNameCodec().fieldOf("enchantment").forGetter(i -> i.enchantment),
+                    Codec.INT.fieldOf("level").forGetter(i -> i.level)
+                    ).apply(instance,EnchantmentInstance::new));
+
+    public static final Codec<Map<TagKey<Item>, EnchantmentInstance>> CODEC = Codec.unboundedMap(TagKey.codec(Registries.ITEM), ENCHANTMENT_INSTANCE_CODEC);
+
+
 
     public SharpeningStoneBlock(Properties properties) {
         super(properties);
@@ -39,10 +48,11 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
         var map = SSConfig.CONFIG.map.get();
         for (var entry: map.entrySet()) {
             var tag = entry.getKey();
-            Enchantment enchantment = entry.getValue();
-            if (stack.is(tag) && EnchantmentHelper.getItemEnchantmentLevel(enchantment,stack) < enchantment.getMaxLevel()) {
+            EnchantmentInstance enchantmentInstance = entry.getValue();
+            Enchantment enchantment = enchantmentInstance.enchantment;
+            if (stack.is(tag) && EnchantmentHelper.getItemEnchantmentLevel(enchantment,stack) < enchantmentInstance.level) {
                 if (!level.isClientSide) {
-                    upgradeEnchant(stack, enchantment);
+                    upgradeEnchant(stack, enchantmentInstance.enchantment);
                     level.levelEvent(LevelEvent.SOUND_GRINDSTONE_USED, pos, 0);
                     stack.hurtAndBreak((int) (stack.getMaxDamage() * SSConfig.CONFIG.damage.get()),player, player1-> player1.broadcastBreakEvent(hand));
                 }

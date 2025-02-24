@@ -2,8 +2,11 @@ package tfar.sharpeningstone;
 
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.fml.config.ModConfig;
 
 public class SharpeningStoneFabric implements ModInitializer {
@@ -17,6 +20,14 @@ public class SharpeningStoneFabric implements ModInitializer {
         // project.
 
         // Use Fabric to bootstrap the Common mod.
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(event -> {
+            event.accept(Init.SHARPENING_STONE);
+            event.accept(Init.REPAIR_BENCH);
+            event.accept(Init.REPAIR_KIT);
+            event.accept(Init.PORTABLE_GRINDSTONE);
+        });
+
         SharpeningStone.init();
     }
     
