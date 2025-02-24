@@ -2,6 +2,7 @@ package tfar.sharpeningstone;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +41,7 @@ public class PortableGrindstoneMenu extends GrindstoneMenu {
                 });
                 repairSlots.setItem(0, ItemStack.EMPTY);
                 repairSlots.setItem(1, ItemStack.EMPTY);
+                itemInHand.hurtAndBreak(1,player,player1 -> player1.broadcastBreakEvent(InteractionHand.MAIN_HAND));
             }
 
             /**

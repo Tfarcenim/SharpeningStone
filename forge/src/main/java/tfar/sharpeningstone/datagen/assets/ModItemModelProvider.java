@@ -20,6 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         makeSimpleBlockItem(Init.SHARPENING_STONE_ITEM);
         makeSimpleBlockItem(Init.REPAIR_BENCH_ITEM);
         makeOneLayerItem(Init.REPAIR_KIT);
+        makeOneLayerItem(Init.PORTABLE_GRINDSTONE);
     }
 
     protected void makeSimpleBlockItem(Item item, ResourceLocation loc) {

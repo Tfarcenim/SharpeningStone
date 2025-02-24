@@ -29,7 +29,7 @@ public class PortableGrindstoneItem extends Item {
                 return InteractionResult.SUCCESS;
             } else {
                 player.openMenu(new SimpleMenuProvider(
-                        (p_53812_, p_53813_, p_53814_) -> new PortableGrindstoneMenu(p_53812_, p_53813_, ContainerLevelAccess.create(level,BlockPos.ZERO),context.getItemInHand()), CONTAINER_TITLE));
+                        (p_53812_, p_53813_, p_53814_) -> new PortableGrindstoneMenu(p_53812_, p_53813_, ContainerLevelAccess.create(level,player.blockPosition()),context.getItemInHand()), CONTAINER_TITLE));
                 player.awardStat(Stats.INTERACT_WITH_GRINDSTONE);
                 return InteractionResult.CONSUME;
             }
