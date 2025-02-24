@@ -13,5 +13,8 @@ public class ModLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add(Init.SHARPENING_STONE,"Sharpening Stone");
+        add(Init.REPAIR_BENCH,"Repair Bench");
+        add(Init.REPAIR_KIT,"Repair Kit");
+        add(Init.PORTABLE_GRINDSTONE,"Portable Grindstone");
     }
 }

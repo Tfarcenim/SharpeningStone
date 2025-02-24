@@ -2,7 +2,13 @@ package tfar.sharpeningstone.datagen.data;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import tfar.sharpeningstone.Init;
 
 import java.util.function.Consumer;
 
@@ -13,13 +19,11 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        /*ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS,ModItems.WHITE_UMBRELLA)
-                .define('a', Blocks.WHITE_WOOL)
-                .define('b', Items.SHIELD)
-                .define('c', Items.IRON_INGOT)
-                .pattern("aba").pattern(" c ").pattern(" c ")
-                .unlockedBy("has_shield", has(Items.SHIELD)).save(consumer);*/
-
-
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Init.PORTABLE_GRINDSTONE)
+                .define('a', Blocks.SMOOTH_SANDSTONE)
+                .define('b', Items.IRON_INGOT)
+                .define('c', ItemTags.PLANKS)
+                .pattern(" a ").pattern("bab").pattern("cac")
+                .unlockedBy("has_iron", has(Items.IRON_INGOT)).save(consumer);
     }
 }

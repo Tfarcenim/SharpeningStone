@@ -7,6 +7,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.ForgeConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
+import tfar.sharpeningstone.block.SharpeningStoneBlock;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class SSConfig {
 
     public SSConfig(ForgeConfigSpec.Builder builder)  {
         builder.push("general");
-        map = ConfigHelper.defineObject(builder,"map",SharpeningStoneBlock.CODEC,defaults());
+        map = ConfigHelper.defineObject(builder,"map", SharpeningStoneBlock.CODEC,defaults());
         damage = builder.defineInRange("damage",.0625,0,1);
         builder.pop();
     }

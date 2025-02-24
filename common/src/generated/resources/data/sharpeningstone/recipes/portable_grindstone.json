@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "a": {
+      "item": "minecraft:smooth_sandstone"
+    },
+    "b": {
+      "item": "minecraft:iron_ingot"
+    },
+    "c": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " a ",
+    "bab",
+    "cac"
+  ],
+  "result": {
+    "item": "sharpeningstone:portable_grindstone"
+  },
+  "show_notification": true
+}

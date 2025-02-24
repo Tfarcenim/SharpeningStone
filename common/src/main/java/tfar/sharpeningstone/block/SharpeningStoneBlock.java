@@ -1,4 +1,4 @@
-package tfar.sharpeningstone;
+package tfar.sharpeningstone.block;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -7,7 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.block.GrindstoneBlock;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import tfar.sharpeningstone.SSConfig;
 
 import java.util.Map;
 
@@ -28,13 +28,9 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
 
     public static final Codec<Map<TagKey<Item>,Enchantment>> CODEC = Codec.unboundedMap(TagKey.codec(Registries.ITEM), BuiltInRegistries.ENCHANTMENT.byNameCodec());
 
-
-
     public SharpeningStoneBlock(Properties properties) {
         super(properties);
     }
-
-    //            stack.enchant(randomEnchant, existingLevel + 1);
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult p_53826_) {
@@ -53,7 +49,6 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
         }
-
         return InteractionResult.PASS;
     }
 

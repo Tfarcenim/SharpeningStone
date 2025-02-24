@@ -19,7 +19,7 @@ public class ModBlockstateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         brewingStand();
-
+        simpleBlock(Init.REPAIR_BENCH,models().withExistingParent("repair_bench",mcLoc("block/smithing_table")));
     }
 
 

@@ -1,3 +1,6 @@
 {
-  "block.sharpeningstone.sharpening_stone": "Sharpening Stone"
+  "block.sharpeningstone.repair_bench": "Repair Bench",
+  "block.sharpeningstone.sharpening_stone": "Sharpening Stone",
+  "item.sharpeningstone.portable_grindstone": "Portable Grindstone",
+  "item.sharpeningstone.repair_kit": "Repair Kit"
 }

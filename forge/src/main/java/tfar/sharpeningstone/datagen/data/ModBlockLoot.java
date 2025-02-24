@@ -14,6 +14,7 @@ public class ModBlockLoot extends VanillaBlockLoot {
     @Override
     protected void generate() {
         dropSelf(Init.SHARPENING_STONE);
+        dropSelf(Init.REPAIR_BENCH);
     }
 
     @Override

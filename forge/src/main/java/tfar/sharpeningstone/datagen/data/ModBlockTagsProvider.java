@@ -19,5 +19,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(Init.SHARPENING_STONE);
+        tag(BlockTags.MINEABLE_WITH_AXE).add(Init.REPAIR_BENCH);
     }
 }

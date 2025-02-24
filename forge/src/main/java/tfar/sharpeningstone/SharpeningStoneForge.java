@@ -28,5 +28,11 @@ public class SharpeningStoneForge {
     void register(RegisterEvent event) {
         event.register(Registries.BLOCK,SharpeningStone.id("sharpening_stone"),() -> Init.SHARPENING_STONE);
         event.register(Registries.ITEM,SharpeningStone.id("sharpening_stone"),() -> Init.SHARPENING_STONE_ITEM);
+
+        event.register(Registries.BLOCK,SharpeningStone.id("repair_bench"),() -> Init.REPAIR_BENCH);
+        event.register(Registries.ITEM,SharpeningStone.id("repair_bench"),() -> Init.REPAIR_BENCH_ITEM);
+        event.register(Registries.ITEM,SharpeningStone.id("repair_kit"),() -> Init.REPAIR_KIT);
+
+        event.register(Registries.ITEM,SharpeningStone.id("portable_grindstone"),() -> Init.PORTABLE_GRINDSTONE);
     }
 }

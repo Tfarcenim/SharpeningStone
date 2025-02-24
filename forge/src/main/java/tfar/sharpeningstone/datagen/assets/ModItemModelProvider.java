@@ -18,7 +18,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         makeSimpleBlockItem(Init.SHARPENING_STONE_ITEM);
-        
+        makeSimpleBlockItem(Init.REPAIR_BENCH_ITEM);
+        makeOneLayerItem(Init.REPAIR_KIT);
     }
 
     protected void makeSimpleBlockItem(Item item, ResourceLocation loc) {
