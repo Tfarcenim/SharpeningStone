@@ -1,8 +1,12 @@
 package tfar.sharpeningstone.platform;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import tfar.sharpeningstone.platform.services.IPlatformHelper;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
+
+import java.util.Map;
 
 public class ForgePlatformHelper implements IPlatformHelper {
 
@@ -22,5 +26,10 @@ public class ForgePlatformHelper implements IPlatformHelper {
     public boolean isDevelopmentEnvironment() {
 
         return !FMLLoader.isProduction();
+    }
+
+    @Override
+    public Map<Enchantment, Integer> getEnchantments(ItemStack stack) {
+        return stack.getAllEnchantments();
     }
 }

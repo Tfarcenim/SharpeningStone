@@ -33,7 +33,11 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
                     Codec.INT.fieldOf("level").forGetter(i -> i.level)
                     ).apply(instance,EnchantmentInstance::new));
 
+
     public static final Codec<Map<TagKey<Item>, EnchantmentInstance>> CODEC = Codec.unboundedMap(TagKey.codec(Registries.ITEM), ENCHANTMENT_INSTANCE_CODEC);
+    public static final Codec<Map<Enchantment,Integer>> D_CODEC =
+            Codec.unboundedMap(BuiltInRegistries.ENCHANTMENT.byNameCodec(),Codec.INT);
+    public static final Codec<Map<Item, Map<Enchantment,Integer>>> DEGRADING_CODEC = Codec.unboundedMap(BuiltInRegistries.ITEM.byNameCodec(), D_CODEC);
 
 
 
@@ -45,7 +49,7 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult p_53826_) {
         ItemStack stack = player.getItemInHand(hand);
 
-        var map = SSConfig.CONFIG.map.get();
+        var map = SSConfig.CONFIG.sharpening_map.get();
         for (var entry: map.entrySet()) {
             var tag = entry.getKey();
             EnchantmentInstance enchantmentInstance = entry.getValue();
@@ -62,10 +66,18 @@ public class SharpeningStoneBlock extends GrindstoneBlock {
         return InteractionResult.PASS;
     }
 
-    static void upgradeEnchant(ItemStack stack,Enchantment enchantment) {
+    public static void upgradeEnchant(ItemStack stack,Enchantment enchantment) {
         int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment,stack);
         cleanupDuplicates(stack,enchantment);
         stack.enchant(enchantment,level+1);
+    }
+
+    public static void downgradeEnchant(ItemStack stack,Enchantment enchantment) {
+        int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment,stack);
+        cleanupDuplicates(stack,enchantment);
+        if (level > 1) {
+            stack.enchant(enchantment, level - 1);
+        }
     }
 
     static void cleanupDuplicates(ItemStack stack, Enchantment enchantment) {

@@ -1,5 +1,10 @@
 package tfar.sharpeningstone.platform.services;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+
+import java.util.Map;
+
 public interface IPlatformHelper {
 
     /**
@@ -33,4 +38,6 @@ public interface IPlatformHelper {
 
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    Map<Enchantment,Integer> getEnchantments(ItemStack stack);
 }
